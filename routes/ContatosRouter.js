@@ -10,8 +10,9 @@ Alterar um contato                           | UPDATE  | /contatos/:id
 */
 
 router.get('/', ContatosController.index);
-router.get('/:id', ContatosController.show);
 router.get('/search', ContatosController.search)
+router.get('/:id', ContatosController.show);
+
 router.post('/', ContatosController.create);
 router.delete('/:id', ContatosController.destroy);
 router.put('/:id', ContatosController.update);
