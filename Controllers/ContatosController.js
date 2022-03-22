@@ -30,7 +30,41 @@ module.exports = {
        let resultado = await sequelize.query(sql, { type: sequelize.QueryTypes.SELECT });
        res.status(200).res.json(resultado);
     },
-    create: (req, res) => { res.send('função create') },
+    create: async (req, res) => { 
+        let {nome, emails, telenones} = req.body;
+ 
+let sql = `INSERT INTO contatos (nome, usuarios_id) VALUES ("${nome}","${uid}")`;
+let resultado = await sequelize.query(sql,{type: sequelize.QueryTypes.INSERT}); 
+let [idCriado, nLinhas]= resultado;
+
+emails = emails.map((e)=>{return{email:e,contatos_id:idCriado}});
+sequelize.queryInterface.bulkInsert("emails",emails);
+
+
+telefones = telefones.map((e)=>{return{telefone:t,contatos_id:idCriado}});
+sequelize.queryInterface.bulkInsert("telefones",telefones);
+
+
+
+
+        res.json({msg:"ok", idCriado})
+
+    },
     destroy: (req, res) => { res.send('função destroy') },
     update: (req, res) => { res.send('função update') }
 }
+
+
+
+// Capturando as info do body
+
+
+// Salvar o nome contato
+
+// Levantar o ID do contato recém criado
+
+// Salvar os emails 
+
+// Salvar os telefones
+
+// Enviar uma resposta para o cliente
