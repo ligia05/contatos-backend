@@ -103,6 +103,20 @@ const buscaContatos = trecho => {
 
     showContatos(contatosFiltrados);
 };
+const carregaContatos = async ()=> {
+try{   
+let resposta = await (fetch('/contatos'));
+let contatos = await resposta.json();
+showContatos(contatos);
+
+}catch (error){
+    console.log(error);
+}
+ 
+ 
+ 
+}
+carregaContatos();
 
 showContatos(contatos);
 
