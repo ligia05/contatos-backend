@@ -2,12 +2,12 @@
 
 const { sequelize } = require('../database/models');
 
-const uid = 1;
+
 
 
 module.exports = {
     index: async (req,res) => {
-        
+        let uid= req.usuario.id;
         let sql = `SELECT id, nome FROM contatos WHERE usuarios_id=${uid}`;
         let contatos = await sequelize.query(sql, {type:sequelize.QueryTypes.SELECT});
 
